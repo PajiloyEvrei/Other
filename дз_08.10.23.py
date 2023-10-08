@@ -61,14 +61,13 @@ def main():
 
 
 	mas = []
-	for first_number in range(4,99999):
+	for first_number in range(4,100):
 
 		number_convert = str(bin(first_number)[2:])
 		if first_number % 5 == 0:
-			number_convert+=number_convert[-3:-1]
+			number_convert+=number_convert[-3]+number_convert[-2]+number_convert[-1]
 		else:
-			number_convert+=str(bin(first_number % 5)[2:])
-
+			number_convert+=str(bin((first_number % 5)*5)[2:])
 		if int(number_convert,2)<100:
 			mas.append(first_number)
 	mas.sort()
@@ -80,19 +79,20 @@ def main():
 		    num, remainder = divmod(num, 3)
 		    new = str(remainder) + new
 		return new
-
+	mas = []
 	for first_number in range(1,99999):
 
 		number_convert = convert_integer_3(first_number)
 
 		if first_number % 3 == 0:
-			number_convert+=number_convert[-2:-1]
+			number_convert+=number_convert[-2]+number_convert[-1]
 		else:
 			number_convert+=convert_integer_3((first_number % 3)*5)
 
 		if int(number_convert,3)>133:
-			print("6 Задача",int(number_convert,3))
-			break
+			mas.append(int(number_convert,3))
+	mas.sort()
+	print("6 Задача",mas[0])
 
 if __name__ == "__main__":
 	main()
